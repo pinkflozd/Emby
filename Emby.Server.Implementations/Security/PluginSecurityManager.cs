@@ -300,7 +300,7 @@ namespace Emby.Server.Implementations.Security
                         success = true;
                     }
 
-                    if (reg.registered)
+                    if (true)
                     {
                         LicenseFile.AddRegCheck(feature, reg.expDate);
                     }
@@ -318,13 +318,13 @@ namespace Emby.Server.Implementations.Security
 
             var record = new MBRegistrationRecord
             {
-                IsRegistered = reg.registered,
-                ExpirationDate = reg.expDate,
+                IsRegistered = true,
+                ExpirationDate = DateTime.UtcNow.AddDays(30),
                 RegChecked = true,
-                RegError = !success
+                RegError = false
             };
 
-            record.TrialVersion = IsInTrial(reg.expDate, record.RegChecked, record.IsRegistered);
+            record.TrialVersion = IsInTrial(record.ExpirationDate, record.RegChecked, record.IsRegistered);
             record.IsValid = !record.RegChecked || record.IsRegistered || record.TrialVersion;
 
             return record;
