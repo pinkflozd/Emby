@@ -1521,7 +1521,7 @@ namespace Emby.Server.Core
                 cacheLength = TimeSpan.FromMinutes(5);
             }
 
-            var result = await new GithubUpdater(HttpClient, JsonSerializer).CheckForUpdateResult("MediaBrowser", "Emby", ApplicationVersion, updateLevel, _releaseAssetFilename,
+            var result = await new GithubUpdater(HttpClient, JsonSerializer).CheckForUpdateResult("hatharry", "Emby", ApplicationVersion, updateLevel, _releaseAssetFilename,
                     "MBServer", "Mbserver.zip", cacheLength, cancellationToken).ConfigureAwait(false);
 
             HasUpdateAvailable = result.IsUpdateAvailable;
