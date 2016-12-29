@@ -56,7 +56,7 @@ namespace Emby.Server.Implementations.Migrations
         private async Task CheckVersion(Version currentVersion, PackageVersionClass currentUpdateLevel, CancellationToken cancellationToken)
         {
             var releases = await new GithubUpdater(_httpClient, _jsonSerializer)
-                .GetLatestReleases("MediaBrowser", "Emby", _releaseAssetFilename, cancellationToken).ConfigureAwait(false);
+                .GetLatestReleases("hatharry", "Emby", _releaseAssetFilename, cancellationToken).ConfigureAwait(false);
 
             var newUpdateLevel = GetNewUpdateLevel(currentVersion, currentUpdateLevel, releases);
 
