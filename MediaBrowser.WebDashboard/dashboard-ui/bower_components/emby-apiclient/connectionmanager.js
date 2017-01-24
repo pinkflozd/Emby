@@ -176,7 +176,7 @@
 
                 console.log('ConnectionManager response status: ' + response.status + ', url: ' + request.url);
 
-                if (response.status < 400) {
+                if (response.status < 402) {
 
                     if (request.dataType === 'json' || request.headers.accept === 'application/json') {
                         return response.json();
@@ -1555,7 +1555,11 @@
                             return Promise.resolve();
                         }
                         if (status === 401) {
-                            return Promise.reject();
+                            appStorage.setItem(cacheKey, JSON.stringify({
+                                lastValidDate: new Date().getTime(),
+                                deviceId: params.deviceId
+                            }));
+                            return Promise.resolve();
                         }
                         if (status === 403) {
                             return Promise.reject('overlimit');
