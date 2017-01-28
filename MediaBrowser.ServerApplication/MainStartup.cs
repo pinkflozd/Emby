@@ -303,7 +303,7 @@ namespace MediaBrowser.ServerApplication
         /// <param name="options">The options.</param>
         private static void RunApplication(ServerApplicationPaths appPaths, ILogManager logManager, bool runService, StartupOptions options)
         {
-            var fileSystem = new ManagedFileSystem(logManager.GetLogger("FileSystem"), true, true, true);
+            var fileSystem = new ManagedFileSystem(logManager.GetLogger("FileSystem"), true, true, true, appPaths.TempDirectory);
             fileSystem.AddShortcutHandler(new LnkShortcutHandler());
             fileSystem.AddShortcutHandler(new MbLinkShortcutHandler(fileSystem));
 
@@ -583,6 +583,12 @@ namespace MediaBrowser.ServerApplication
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise</returns>
         private static bool PerformUpdateIfNeeded(ServerApplicationPaths appPaths, ILogger logger)
         {
+            // Not supported
+            if (IsRunningAsService)
+            {
+                return false;
+            }
+
             // Look for the existence of an update archive
             var updateArchive = Path.Combine(appPaths.TempUpdatePath, "MBServer" + ".zip");
             if (File.Exists(updateArchive))

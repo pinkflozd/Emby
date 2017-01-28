@@ -14,7 +14,10 @@
                 selected: selected
             },
 
-            li_attr: {}
+            li_attr: {
+                serveritemtype: item.Type,
+                collectiontype: item.CollectionType
+            }
         };
 
         if (item.IsFolder) {
@@ -272,11 +275,22 @@
 
         var eventData = {
             id: node.id,
-            itemType: node.li_attr.itemtype
+            itemType: node.li_attr.itemtype,
+            serverItemType: node.li_attr.serveritemtype,
+            collectionType: node.li_attr.collectiontype
         };
 
         if (eventData.itemType != 'livetv' && eventData.itemType != 'mediafolders') {
-            $(this).trigger('itemclicked', [eventData]);
+
+            // We'd like to prevent these from being editable but this removes the ability to perform a top level refresh
+            //if (eventData.serverItemType != 'UserView' && eventData.serverItemType != 'CollectionFolder' && !eventData.collectionType)
+            {
+                this.dispatchEvent(new CustomEvent('itemclicked', {
+                    detail: eventData,
+                    bubbles: true,
+                    cancelable: false
+                }));
+            }
         }
     }
 
