@@ -14,7 +14,6 @@ C:\Users\luke\Source\Repos\Emby\Emby.Server.Core\Emby.Server.Core.xproj|C:\Users
 C:\Users\luke\Source\Repos\Emby\Emby.Server.Core\Emby.Server.Core.xproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.WebDashboard\MediaBrowser.WebDashboard.csproj
 C:\Users\luke\Source\Repos\Emby\Emby.Server.Core\Emby.Server.Core.xproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.XbmcMetadata\MediaBrowser.XbmcMetadata.csproj
 C:\Users\luke\Source\Repos\Emby\Emby.Server.Core\Emby.Server.Core.xproj|C:\Users\luke\Source\Repos\Emby\Mono.Nat\Mono.Nat.xproj
-C:\Users\luke\Source\Repos\Emby\Emby.Server.Core\Emby.Server.Core.xproj|C:\Users\luke\Source\Repos\Emby\ServiceStack\ServiceStack.csproj
 C:\Users\luke\Source\Repos\Emby\Emby.Server.Core\Emby.Server.Core.xproj|C:\Users\luke\Source\Repos\Emby\SocketHttpListener.Portable\SocketHttpListener.Portable.csproj
 C:\Users\luke\Source\Repos\Emby\Emby.Common.Implementations\Emby.Common.Implementations.xproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Common\MediaBrowser.Common.csproj
 C:\Users\luke\Source\Repos\Emby\Emby.Common.Implementations\Emby.Common.Implementations.xproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Model\MediaBrowser.Model.csproj
@@ -38,7 +37,6 @@ C:\Users\luke\Source\Repos\Emby\Emby.Server.Implementations\Emby.Server.Implemen
 C:\Users\luke\Source\Repos\Emby\Emby.Server.Implementations\Emby.Server.Implementations.csproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Model\MediaBrowser.Model.csproj
 C:\Users\luke\Source\Repos\Emby\Emby.Server.Implementations\Emby.Server.Implementations.csproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Providers\MediaBrowser.Providers.csproj
 C:\Users\luke\Source\Repos\Emby\Emby.Server.Implementations\Emby.Server.Implementations.csproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Server.Implementations\MediaBrowser.Server.Implementations.csproj
-C:\Users\luke\Source\Repos\Emby\Emby.Server.Implementations\Emby.Server.Implementations.csproj|C:\Users\luke\Source\Repos\Emby\ServiceStack\ServiceStack.csproj
 C:\Users\luke\Source\Repos\Emby\Emby.Server.Implementations\Emby.Server.Implementations.csproj|C:\Users\luke\Source\Repos\Emby\SocketHttpListener.Portable\SocketHttpListener.Portable.csproj
 C:\Users\luke\Source\Repos\Emby\MediaBrowser.Providers\MediaBrowser.Providers.csproj|C:\Users\luke\Source\Repos\Emby\DvdLib\DvdLib.csproj
 C:\Users\luke\Source\Repos\Emby\MediaBrowser.Providers\MediaBrowser.Providers.csproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Common\MediaBrowser.Common.csproj
@@ -48,8 +46,6 @@ C:\Users\luke\Source\Repos\Emby\DvdLib\DvdLib.csproj|C:\Users\luke\Source\Repos\
 C:\Users\luke\Source\Repos\Emby\MediaBrowser.Server.Implementations\MediaBrowser.Server.Implementations.csproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Common\MediaBrowser.Common.csproj
 C:\Users\luke\Source\Repos\Emby\MediaBrowser.Server.Implementations\MediaBrowser.Server.Implementations.csproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Controller\MediaBrowser.Controller.csproj
 C:\Users\luke\Source\Repos\Emby\MediaBrowser.Server.Implementations\MediaBrowser.Server.Implementations.csproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Model\MediaBrowser.Model.csproj
-C:\Users\luke\Source\Repos\Emby\ServiceStack\ServiceStack.csproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Common\MediaBrowser.Common.csproj
-C:\Users\luke\Source\Repos\Emby\ServiceStack\ServiceStack.csproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Model\MediaBrowser.Model.csproj
 C:\Users\luke\Source\Repos\Emby\SocketHttpListener.Portable\SocketHttpListener.Portable.csproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Common\MediaBrowser.Common.csproj
 C:\Users\luke\Source\Repos\Emby\SocketHttpListener.Portable\SocketHttpListener.Portable.csproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Model\MediaBrowser.Model.csproj
 C:\Users\luke\Source\Repos\Emby\MediaBrowser.Api\MediaBrowser.Api.csproj|C:\Users\luke\Source\Repos\Emby\MediaBrowser.Common\MediaBrowser.Common.csproj
