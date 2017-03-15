@@ -40,9 +40,7 @@ define(["datetime", "jQuery", "dom", "loading", "humanedate", "cardStyle", "list
             onPageShow: function() {
                 var page = this,
                     apiClient = ApiClient;
-                apiClient && (DashboardPage.newsStartIndex = 0, loading.show(), DashboardPage.pollForInfo(page), DashboardPage.startInterval(apiClient), Events.on(apiClient, "websocketmessage", DashboardPage.onWebSocketMessage), Events.on(apiClient, "websocketopen", DashboardPage.onWebSocketOpen), DashboardPage.lastAppUpdateCheck = null, DashboardPage.lastPluginUpdateCheck = null, Dashboard.getPluginSecurityInfo().then(function(pluginSecurityInfo) {
-                    DashboardPage.renderSupporterIcon(page, pluginSecurityInfo)
-                }), DashboardPage.reloadSystemInfo(page), DashboardPage.reloadNews(page), DashboardPage.sessionUpdateTimer = setInterval(DashboardPage.refreshSessionsLocally, 6e4), $(".activityItems", page).activityLogList(), $(".swaggerLink", page).attr("href", apiClient.getUrl("swagger-ui/index.html", {
+                apiClient && (DashboardPage.newsStartIndex = 0, Dashboard.showLoadingMsg(), DashboardPage.pollForInfo(page), DashboardPage.startInterval(apiClient), Events.on(apiClient, "websocketmessage", DashboardPage.onWebSocketMessage), Events.on(apiClient, "websocketopen", DashboardPage.onWebSocketOpen), DashboardPage.lastAppUpdateCheck = null, DashboardPage.lastPluginUpdateCheck = null, DashboardPage.reloadSystemInfo(page), DashboardPage.reloadNews(page), DashboardPage.sessionUpdateTimer = setInterval(DashboardPage.refreshSessionsLocally, 6e4), $(".activityItems", page).activityLogList(), $(".swaggerLink", page).attr("href", apiClient.getUrl("swagger-ui/index.html", {
                     api_key: ApiClient.accessToken()
                 })), refreshHealthMonitor(page))
             },
@@ -279,10 +277,6 @@ define(["datetime", "jQuery", "dom", "loading", "humanedate", "cardStyle", "list
                         remoteAccessHtml = Globalize.translate("LabelRemoteAccessUrl", '<a href="' + externalUrl + '" target="_blank">' + externalUrl + "</a>");
                     $(".externalUrl", page).html(remoteAccessHtml + helpButton).show().trigger("create")
                 } else $(".externalUrl", page).hide()
-            },
-            renderSupporterIcon: function(page, pluginSecurityInfo) {
-                var imgUrl, text, supporterIconContainer = page.querySelector(".supporterIconContainer");
-                AppInfo.enableSupporterMembership && pluginSecurityInfo.IsMBSupporter ? (supporterIconContainer.classList.remove("hide"), imgUrl = "css/images/supporter/supporterbadge.png", text = Globalize.translate("MessageThankYouForSupporting"), supporterIconContainer.innerHTML = '<a class="imageLink supporterIcon" href="http://emby.media/premiere" target="_blank" title="' + text + '"><img src="' + imgUrl + '" style="height:32px;vertical-align: middle; margin-right: .5em;" /></a><span style="position:relative;top:2px;text-decoration:none;">' + text + "</span>") : supporterIconContainer.classList.add("hide")
             },
             renderHasPendingRestart: function(page, hasPendingRestart) {
                 if (hasPendingRestart) page.querySelector("#pUpToDate").classList.add("hide"), $("#pUpdateNow", page).hide();
