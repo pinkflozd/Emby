@@ -484,6 +484,15 @@ namespace MediaBrowser.Model.Dlna
                 playlistItem.CopyTimestamps = transcodingProfile.CopyTimestamps;
                 playlistItem.EnableSubtitlesInManifest = transcodingProfile.EnableSubtitlesInManifest;
 
+                if (transcodingProfile.MinSegments > 0)
+                {
+                    playlistItem.MinSegments = transcodingProfile.MinSegments;
+                }
+                if (transcodingProfile.SegmentLength > 0)
+                {
+                    playlistItem.SegmentLength = transcodingProfile.SegmentLength;
+                }
+
                 if (!string.IsNullOrEmpty(transcodingProfile.MaxAudioChannels))
                 {
                     int transcodingMaxAudioChannels;
@@ -1028,6 +1037,12 @@ namespace MediaBrowser.Model.Dlna
 
         private bool IsAudioEligibleForDirectPlay(MediaSourceInfo item, long? maxBitrate)
         {
+            // Don't restrict by bitrate if coming from an external domain
+            if (item.IsRemote)
+            {
+                return true;    
+            }
+
             if (!maxBitrate.HasValue)
             {
                 _logger.Info("Cannot direct play due to unknown supported bitrate");
