@@ -40,7 +40,7 @@ define(["datetime", "jQuery", "dom", "loading", "humanedate", "cardStyle", "list
             onPageShow: function() {
                 var page = this,
                     apiClient = ApiClient;
-                apiClient && (DashboardPage.newsStartIndex = 0, Dashboard.showLoadingMsg(), DashboardPage.pollForInfo(page), DashboardPage.startInterval(apiClient), Events.on(apiClient, "websocketmessage", DashboardPage.onWebSocketMessage), Events.on(apiClient, "websocketopen", DashboardPage.onWebSocketOpen), DashboardPage.lastAppUpdateCheck = null, DashboardPage.lastPluginUpdateCheck = null, DashboardPage.reloadSystemInfo(page), DashboardPage.reloadNews(page), DashboardPage.sessionUpdateTimer = setInterval(DashboardPage.refreshSessionsLocally, 6e4), $(".activityItems", page).activityLogList(), $(".swaggerLink", page).attr("href", apiClient.getUrl("swagger-ui/index.html", {
+                apiClient && (DashboardPage.newsStartIndex = 0, loading.show(), DashboardPage.pollForInfo(page), DashboardPage.startInterval(apiClient), Events.on(apiClient, "websocketmessage", DashboardPage.onWebSocketMessage), Events.on(apiClient, "websocketopen", DashboardPage.onWebSocketOpen), DashboardPage.lastAppUpdateCheck = null, DashboardPage.lastPluginUpdateCheck = null, DashboardPage.reloadSystemInfo(page), DashboardPage.reloadNews(page), DashboardPage.sessionUpdateTimer = setInterval(DashboardPage.refreshSessionsLocally, 6e4), $(".activityItems", page).activityLogList(), $(".swaggerLink", page).attr("href", apiClient.getUrl("swagger-ui/index.html", {
                     api_key: ApiClient.accessToken()
                 })), refreshHealthMonitor(page))
             },
