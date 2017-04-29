@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -61,6 +61,7 @@ namespace Emby.Server.Implementations.Security
         private readonly IHttpClient _httpClient;
         private readonly IJsonSerializer _jsonSerializer;
         private readonly IServerApplicationHost _appHost;
+        private readonly ILogger _logger;
         private readonly IApplicationPaths _appPaths;
         private readonly IFileSystem _fileSystem;
         private readonly ICryptoProvider _cryptographyProvider;
@@ -91,6 +92,7 @@ namespace Emby.Server.Implementations.Security
             _appPaths = appPaths;
             _fileSystem = fileSystem;
             _cryptographyProvider = cryptographyProvider;
+            _logger = logManager.GetLogger("SecurityManager");
         }
 
         /// <summary>
@@ -134,14 +136,13 @@ namespace Emby.Server.Implementations.Security
         {
             return new MBRegistrationRecord
             {
-            IsRegistered = true,
-            RegChecked = true,
-            TrialVersion = false,
-            IsValid = true,
-            RegError = false
+                IsRegistered = true,
+                RegChecked = true,
+                TrialVersion = false,
+                IsValid = true,
+                RegError = false
             };
         }
-
         /// <summary>
         /// Gets or sets the supporter key.
         /// </summary>
@@ -178,55 +179,6 @@ namespace Emby.Server.Implementations.Security
         /// <param name="parameters">Json parameters to send to admin server</param>
         public async Task RegisterAppStoreSale(string parameters)
         {
-            var options = new HttpRequestOptions()
-            {
-                Url = AppstoreRegUrl,
-                CancellationToken = CancellationToken.None,
-                BufferContent = false
-            };
-            options.RequestHeaders.Add("X-Emby-Token", _appHost.SystemId);
-            options.RequestContent = parameters;
-            options.RequestContentType = "application/json";
-
-            try
-            {
-                using (var response = await _httpClient.Post(options).ConfigureAwait(false))
-                {
-                    var reg = _jsonSerializer.DeserializeFromStream<RegRecord>(response.Content);
-
-                    if (reg == null)
-                    {
-                        var msg = "Result from appstore registration was null.";
-                        throw new ArgumentException(msg);
-                    }
-                    if (!String.IsNullOrEmpty(reg.key))
-                    {
-                        SupporterKey = reg.key;
-                    }
-                }
-
-            }
-            catch (ArgumentException)
-            {
-                SaveAppStoreInfo(parameters);
-                throw;
-            }
-            catch (HttpException e)
-            {
-
-                if (e.StatusCode.HasValue && e.StatusCode.Value == HttpStatusCode.PaymentRequired)
-                {
-                    throw new PaymentRequiredException();
-                }
-                throw new Exception("Error registering store sale");
-            }
-            catch (Exception e)
-            {
-                SaveAppStoreInfo(parameters);
-                //TODO - could create a re-try routine on start-up if this file is there.  For now we can handle manually.
-                throw new Exception("Error registering store sale");
-            }
-
         }
 
         private void SaveAppStoreInfo(string info)
